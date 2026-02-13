@@ -17,12 +17,21 @@ const options = {
 export const fetchNotes = async (
   query: string,
   page: number,
+  tag: string,
 ): Promise<NoteList> => {
   const { data } = await axios.get<NoteList>(
-    `https://notehub-public.goit.study/api/notes?${query === "" ? "" : `search=${query}&`}page=${page}&perPage=12&sortBy=created`,
-    options,
+    `https://notehub-public.goit.study/api/notes`,
+    {
+      ...options,
+      params: {
+        ...(query === "" ? null : { search: query }),
+        ...(tag === "all" ? null : { tag }),
+        page,
+        perPage: 12,
+        sortBy: "created",
+      },
+    },
   );
-
   return data;
 };
 
