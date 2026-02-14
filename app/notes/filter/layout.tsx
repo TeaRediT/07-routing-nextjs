@@ -1,4 +1,4 @@
-import css from "./page.module.css";
+import css from "./LayoutNotes.module.css";
 
 export default function RootLayout({
   children,
@@ -10,7 +10,7 @@ export default function RootLayout({
   return (
     <div className={css.container}>
       <aside className={css.sidebar}>{sidebar}</aside>
-      <div>{children}</div>
+      <div className={css.notesWrapper}>{children}</div>
     </div>
   );
 }
